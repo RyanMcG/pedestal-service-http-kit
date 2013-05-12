@@ -15,7 +15,9 @@
     [h (HttpServer. ip port h max-body max-line)]))
 
 (defn server
-  ([handler] (server servlet {}))
+  "Takes a ring handler function and optional options and returns a pedestal
+  compatible server map."
+  ([handler] (server handler {}))
   ([handler options]
    (let [[ring-handler server] (create-server-handler-and-server handler
                                                                  options)]
